@@ -2,6 +2,11 @@
 {% block body %}
     <h1 class="text-center">User Registration</h1>
     <div class="container">
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
         <form action="/register" method="POST">
             <div class="mb-3">
                 <label for="name" class="form-label">Full Name</label>

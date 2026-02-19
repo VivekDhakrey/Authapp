@@ -2,6 +2,11 @@
 {% block body %}
 <h1 class="text-center">User Login</h1>
     <div class="container">
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
         <form action="/login" method="POST">
         <div class="mb-3">
             <label for="email" class="form-label">Email Address</label>
