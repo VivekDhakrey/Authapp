@@ -32,20 +32,15 @@ def index():
 @app.route("/register", methods=['GET','POST'])
 def register():
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
+        name = request.form.get('name', '').strip()
+        email = request.form.get('email', '').strip()
+        password = request.form.get('password', '').strip()
         
-        # Validation
-        if not name or not name.strip():
-            return render_template('register.html', error='Name should not be empty')
+        # Check if all fields are provided
+        if not name or not email or not password:
+            return render_template('register.html', error='All fields are required')
         
-        if not email or not email.strip():
-            return render_template('register.html', error='Email should not be empty')
-        
-        if not password or not password.strip():
-            return render_template('register.html', error='Password should not be empty')
-        
+        # Check password length
         if len(password) < 6:
             return render_template('register.html', error='Password should be at least 6 characters')
         
